@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pokédex</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="jumbotron text-center">
+      <h1>i-Pokédex</h1>
+      <p>La guía Pokémon definitiva</p>
+    </div>
+  
+    <div class="container lg-col-6 sm-col-9 jumbotron text-center" style="background-color: #fff; height: 500px;">
+      <section class="section text-center"> <p>Buscá por número de Pokémon o por nombre</p>
+        <div class="field">
+          <div class="control input-group">
+            <input
+              class="form-control"
+              type="text"
+              id="search-input"
+              placeholder="Buscar Pokémon"
+              style="max-width: 900%;"
+            />
+            <div class="input-group-append">
+              <button class="btn btn-primary" id="search-button">Buscar</button>
+            </div>
+          </div>
+        </div>
+        <div id="results"></div>
+      </section>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

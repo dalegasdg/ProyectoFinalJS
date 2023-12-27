@@ -13,15 +13,21 @@ searchInput.addEventListener("keyup", (event) => {
 });
 
 async function searchPokemon(query) {
-  const respuesta = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${query}`
-  );
-  const data = await respuesta.json();
+  const respuesta = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
 
-  if (respuesta.status === 404) {
-    resultsDiv.innerHTML = `<p>No hay resultados para su búsqueda.</p>`;
+  if (!respuesta.ok) {
+    if (respuesta.status === 404) {
+      alert("No hay resultados para su búsqueda");
+    } else {
+      alert("Ocurrió un error al buscar el Pokémon.");
+    }
+    resultsDiv.innerHTML = ` <div class="alert alert-warning">
+    <strong>Upps!</strong> No encontramos resltado para esa búsqueda.
+  </div>`;
     return;
   }
+
+  const data = await respuesta.json();
 
   const pokemon = {
     name: data.name,
@@ -59,10 +65,10 @@ async function searchPokemon(query) {
   const html = `
     <div>
       <img src="${pokemon.image}" alt="${pokemon.name}" />
-      <h2>${pokemon.name}</h2>
-      <p>Número: ${pokemon.number}</p>
+      <h2 style="text-transform:Capitalize;">${pokemon.name}</h2>
+      <p>Número: <span class="btn btn-primary badge">${pokemon.number}</span></p>
       <p>Tipo: ${pokemon.types.join(", ")}</p>
-      <p>Evoluciones: ${
+      <p style="text-transform:Capitalize;">Evoluciones: ${
         pokemon.evolutions.length > 0
           ? pokemon.evolutions.join(", ")
           : "Ninguna"
